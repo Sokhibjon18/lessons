@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
+import 'package:lesson_13/l13-loginUI/data/auth_users_info.dart';
 import 'package:lesson_13/l13-loginUI/forgot_password_page.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_social_media_buttons.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
@@ -12,8 +16,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    String passwordValue = '';
+    String emailAddressValue = '';
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFFFFFFF),
@@ -46,12 +54,24 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 32),
-            AuthTextfields(hintText: 'Enter your email', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'Enter your email',
+              controller: emailController,
+              onChanged: (value) {
+                emailAddressValue = value;
+                log(value);
+              },
+              validator: validateEmailAddress(emailAddressValue),
+            ),
             const SizedBox(height: 12),
             AuthTextfields(
               hintText: 'Enter your password',
-              onChanged: (value) {},
+              controller: passwordController,
+              onChanged: (value) {
+                passwordValue = value;
+              },
               showOrHideIcon: true,
+              validator: validatePassword(passwordValue),
             ),
             const SizedBox(height: 8),
             Align(
@@ -76,7 +96,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 24),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                isEmailAndPasswordExists(emailAddressValue, passwordValue,
+                    emailController, passwordController, context);
+              },
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),

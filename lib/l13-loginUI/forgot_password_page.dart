@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
 import 'package:lesson_13/l13-loginUI/otp_verification_page.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
 
@@ -8,6 +9,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String emailAddressValue = '';
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFFFFFFF),
@@ -45,7 +47,13 @@ class ForgotPasswordPage extends StatelessWidget {
               style: TextStyle(color: Color(0xFF8391A1)),
             ),
             const SizedBox(height: 24),
-            AuthTextfields(hintText: 'Enter your email', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'Enter your email',
+              onChanged: (value) {
+                emailAddressValue = value;
+              },
+              validator: validateEmailAddress(emailAddressValue),
+            ),
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {

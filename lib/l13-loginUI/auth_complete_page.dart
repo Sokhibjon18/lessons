@@ -25,10 +25,16 @@ class AuthCompletePage extends StatelessWidget {
               'Password Changed!',
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(
+              height: 4,
+              width: 4,
+            ),
             const Text(
-              'Your password has been changed\nsuccessfully.',
-              style: TextStyle(color: Color(0xFF8391A1), fontSize: 15),
+              'Biz sizni yana ko`rib turganimizdan xursandmiz',
+              style: TextStyle(
+                color: Color(0xFF8391A1),
+                fontSize: 15,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 48),
@@ -52,9 +58,10 @@ class AuthCompletePage extends StatelessWidget {
                   'Back to Login',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500),
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),

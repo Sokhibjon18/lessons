@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AuthTextfields extends StatefulWidget {
   const AuthTextfields({
@@ -7,10 +6,14 @@ class AuthTextfields extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     this.showOrHideIcon,
+    this.validator,
+    this.controller,
   });
   final String hintText;
   final void Function(String)? onChanged;
   final bool? showOrHideIcon;
+  final String? validator;
+  final TextEditingController? controller;
 
   @override
   State<AuthTextfields> createState() => _AuthTextfieldsState();
@@ -20,8 +23,11 @@ class _AuthTextfieldsState extends State<AuthTextfields> {
   bool isIconVisible = true;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (value) => widget.onChanged,
+    return TextFormField(
+      // autovalidateMode: AutovalidateMode.always,
+      onChanged: widget.onChanged,
+      validator: (value) => widget.validator,
+      controller: widget.controller,
       style: const TextStyle(
         fontSize: 17,
         fontWeight: FontWeight.w500,
@@ -57,7 +63,7 @@ class _AuthTextfieldsState extends State<AuthTextfields> {
               )
             : null,
       ),
-      obscureText: isIconVisible,
+      obscureText: widget.showOrHideIcon == true ? isIconVisible : false,
     );
   }
 }

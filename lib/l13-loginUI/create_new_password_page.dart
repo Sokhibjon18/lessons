@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lesson_13/l13-loginUI/auth_complete_page.dart';
+import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
 
 class CreateNewPasswordPage extends StatelessWidget {
@@ -7,6 +8,8 @@ class CreateNewPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String newPasswordValue = '';
+    String confirmedPasswordValue = '';
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFFFFFFF),
@@ -44,9 +47,21 @@ class CreateNewPasswordPage extends StatelessWidget {
               style: TextStyle(color: Color(0xFF8391A1)),
             ),
             const SizedBox(height: 24),
-            AuthTextfields(hintText: 'New Password', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'New Password',
+              onChanged: (value) {
+                newPasswordValue = value;
+              },
+              validator: validatePassword(newPasswordValue),
+            ),
             const SizedBox(height: 12),
-            AuthTextfields(hintText: 'Confirm Password', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'Confirm Password',
+              onChanged: (value) {
+                confirmedPasswordValue = value;
+              },
+              validator: validatePassword(confirmedPasswordValue),
+            ),
             const SizedBox(height: 32),
             GestureDetector(
               onTap: () {

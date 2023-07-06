@@ -1,5 +1,11 @@
+import 'dart:developer';
+
+import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
+import 'package:lesson_13/l13-loginUI/data/auth_users_info.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_social_media_buttons.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
 
@@ -8,6 +14,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String emailAddressValue = '';
+    String passwordValue = '';
+    String confirmedPasswordValue = '';
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFFFFFFF),
@@ -42,14 +52,42 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 24),
             AuthTextfields(hintText: 'Username', onChanged: (value) {}),
             const SizedBox(height: 12),
-            AuthTextfields(hintText: 'Email', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'Email',
+              onChanged: (value) {
+                emailAddressValue = value;
+              },
+              validator: validateEmailAddress(emailAddressValue),
+            ),
             const SizedBox(height: 12),
-            AuthTextfields(hintText: 'Password', onChanged: (value) {}),
+            AuthTextfields(
+              hintText: 'Password',
+              onChanged: (value) {
+                passwordValue = value;
+              },
+              validator: validatePassword(passwordValue),
+            ),
             const SizedBox(height: 12),
-            AuthTextfields(hintText: 'Confirm password', onChanged: (value) {}),
+            AuthTextfields(
+                hintText: 'Confirm password',
+                onChanged: (value) {
+                  confirmedPasswordValue = value;
+                }),
             const SizedBox(height: 24),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                if (passwordValue == confirmedPasswordValue) {
+                  users[emailAddressValue] = passwordValue;
+                  Flushbar(
+                    message: 'Registered successfully',
+                    duration: const Duration(seconds: 3),
+                  ).show(context);
+                } else {
+                  FlushbarHelper.createError(message: 'Check password again')
+                      .show(context);
+                }
+                log(users.toString());
+              },
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
