@@ -1,11 +1,12 @@
 import 'dart:developer';
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
 import 'package:lesson_13/l13-loginUI/data/auth_users_info.dart';
+import 'package:lesson_13/l13-loginUI/login_page.dart';
+import 'package:lesson_13/l13-loginUI/welcome_page.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_social_media_buttons.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
 
@@ -17,6 +18,22 @@ class RegisterPage extends StatelessWidget {
     String emailAddressValue = '';
     String passwordValue = '';
     String confirmedPasswordValue = '';
+    final AuthenticationRepository _authenticationRepository =
+        AuthenticationRepository();
+
+    void userRegistered() {
+      bool _isUserRegistered = _authenticationRepository.isRegistered(
+          confirmedPasswordValue, passwordValue, emailAddressValue);
+      if (_isUserRegistered) {
+        Flushbar(
+          message: 'Registered successfully',
+          duration: const Duration(seconds: 3),
+        ).show(context);
+      } else {
+        FlushbarHelper.createError(message: 'Check email or password')
+            .show(context);
+      }
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -29,7 +46,12 @@ class RegisterPage extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const WelcomePage(),
+                  ),
+                );
               },
               child: Container(
                 height: 41,
@@ -76,17 +98,8 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 24),
             GestureDetector(
               onTap: () {
-                if (passwordValue == confirmedPasswordValue) {
-                  users[emailAddressValue] = passwordValue;
-                  Flushbar(
-                    message: 'Registered successfully',
-                    duration: const Duration(seconds: 3),
-                  ).show(context);
-                } else {
-                  FlushbarHelper.createError(message: 'Check password again')
-                      .show(context);
-                }
-                log(users.toString());
+                userRegistered();
+                log(_authenticationRepository.users.toString());
               },
               child: Container(
                 width: double.infinity,
@@ -148,7 +161,15 @@ class RegisterPage extends StatelessWidget {
                     TextSpan(
                       text: 'Login Now',
                       style: const TextStyle(color: Color(0xFF35C2C1)),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const LoginPage(),
+                            ),
+                          );
+                        },
                     ),
                   ],
                 ),

@@ -38,6 +38,8 @@ dependencies:
   flutter_svg: ^2.0.7
   pinput: ^2.2.31
   another_flushbar: ^1.12.30
+  hidden_drawer_menu: ^3.0.1
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
