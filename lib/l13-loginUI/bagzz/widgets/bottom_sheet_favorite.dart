@@ -1,19 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_image/flutter_svg_image.dart';
 import 'package:lesson_13/l13-loginUI/bagzz/bags_info.dart';
 
-class BottomSheetWidget extends StatefulWidget {
-  const BottomSheetWidget({
-    Key? key,
-  }) : super(key: key);
+class BottomSheetFavorite extends StatefulWidget {
+  const BottomSheetFavorite({super.key});
 
   @override
-  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
+  State<BottomSheetFavorite> createState() => _BottomSheetFavoriteState();
 }
 
-class _BottomSheetWidgetState extends State<BottomSheetWidget> {
-  int count = 0;
+class _BottomSheetFavoriteState extends State<BottomSheetFavorite> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,46 +39,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
-                                  height: 81,
+                                  height: 100,
                                   child: Image(
                                       image: AssetImage(
                                           bagsInfo[index].imageName))),
-                              Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        bagsInfo[index].count--;
-                                      });
-                                    },
-                                    child: Container(
-                                        color: const Color(0xFF000000),
-                                        child: const Icon(
-                                          Icons.remove,
-                                          color: Color(0xFFFFFFFF),
-                                        )),
-                                  ),
-                                  Container(
-                                      color: const Color(0xFFFFFFFF),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Text('${bagsInfo[index].count}'),
-                                      )),
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        bagsInfo[index].count++;
-                                      });
-                                    },
-                                    child: Container(
-                                        color: const Color(0xFF000000),
-                                        child: const Icon(
-                                          Icons.add,
-                                          color: Color(0xFFFFFFFF),
-                                        )),
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                           Column(
@@ -109,13 +69,27 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                               const SizedBox(
                                 height: 12,
                               ),
-                              Text(
-                                '\$${bagsInfo[index].count * bagsInfo[index].cost}',
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF000000)),
-                              )
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    bagsInfo[index].count = 0;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: Color(0xFF000000)))),
+                                  child: const Text(
+                                    'REMOVE',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF000000),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -132,7 +106,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'PROCEED TO BUY',
+                      'ADD ALL TO CART',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

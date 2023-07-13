@@ -11,6 +11,45 @@ class BagInfoCarousel extends StatefulWidget {
 
 class _BagInfoCarouselState extends State<BagInfoCarousel> {
   final CarouselController _carouselController = CarouselController();
+  bool a = true;
+  bool b = false;
+  bool c = false;
+
+  List<Widget> getItems() {
+    List<Widget> items = [];
+
+    for (var i = 0; i < carouselData.length; i++) {
+      items.add(Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            Text(
+              carouselData[i],
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF5B5B5B),
+              ),
+            ),
+          const  SizedBox(
+              height: 20,
+            ),
+            Text(
+              carouselData2[i],
+              style: const TextStyle(
+                color: Color(0xFF5B5B5B),
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      ));
+    }
+
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,12 +59,20 @@ class _BagInfoCarouselState extends State<BagInfoCarousel> {
           children: [
             InkWell(
                 onTap: () {
+                  setState(() {
+                    a = true;
+                    c = false;
+                    b = false;
+                  });
                   _carouselController.animateToPage(0);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Color(0xFF000000)))),
+                      border: Border(
+                          bottom: BorderSide(
+                              color: a == true
+                                  ? const Color(0xFF000000)
+                                  : const Color(0xFFFFFFFF)))),
                   child: const Text(
                     'Description',
                     style: TextStyle(
@@ -36,12 +83,20 @@ class _BagInfoCarouselState extends State<BagInfoCarousel> {
                 )),
             InkWell(
                 onTap: () {
+                  setState(() {
+                    a = false;
+                    c = true;
+                    b = false;
+                  });
                   _carouselController.animateToPage(1);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Color(0xFF000000)))),
+                      border: Border(
+                          bottom: BorderSide(
+                              color: c == true
+                                  ? const Color(0xFF000000)
+                                  : const Color(0xFFFFFFFF)))),
                   child: const Text(
                     'Shipping info',
                     style: TextStyle(
@@ -52,12 +107,20 @@ class _BagInfoCarouselState extends State<BagInfoCarousel> {
                 )),
             InkWell(
                 onTap: () {
+                  setState(() {
+                    a = false;
+                    c = false;
+                    b = true;
+                  });
                   _carouselController.animateToPage(2);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Color(0xFF000000)))),
+                      border: Border(
+                          bottom: BorderSide(
+                              color: b == true
+                                  ? const Color(0xFF000000)
+                                  : const Color(0xFFFFFFFF)))),
                   child: const Text(
                     'Payment options',
                     style: TextStyle(
@@ -73,34 +136,12 @@ class _BagInfoCarouselState extends State<BagInfoCarousel> {
           carouselController: _carouselController,
           options: CarouselOptions(
             viewportFraction: 1,
-            enlargeCenterPage: false,
-            onPageChanged: (index, reason) {
-              print(carouselData[index]);
-            },
+            aspectRatio: 1,
+            disableCenter: true,
+            enlargeCenterPage: true,
+            onPageChanged: (index, reason) {},
           ),
-          items: carouselData.map((item) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          item,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF000000),
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          }).toList(),
+          items: getItems(),
         ),
       ],
     );

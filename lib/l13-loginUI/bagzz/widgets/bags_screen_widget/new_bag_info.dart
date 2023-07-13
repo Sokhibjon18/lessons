@@ -48,9 +48,9 @@ class _NewBagsInfoState extends State<NewBagsInfo> {
               const SizedBox(
                 height: 12,
               ),
-              const Text(
-                '\$564',
-                style: TextStyle(
+              Text(
+                '\$${widget.bagBag.cost}',
+                style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF000000)),
@@ -82,7 +82,11 @@ class _NewBagsInfoState extends State<NewBagsInfo> {
                 height: 12,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    widget.bagBag.count++;
+                  });
+                },
                 child: Container(
                   decoration: const BoxDecoration(
                       border:

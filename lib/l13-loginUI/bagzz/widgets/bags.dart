@@ -12,7 +12,6 @@ class Bags extends StatefulWidget {
 
 class _BagsState extends State<Bags> {
   bool isButtonPressed = false;
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_image/flutter_svg_image.dart';
-import 'package:lesson_13/l13-loginUI/bagzz/profile_screen.dart';
 import 'package:lesson_13/l13-loginUI/bagzz/search_screen.dart';
 import 'package:lesson_13/l13-loginUI/bagzz/widgets/app_bar_widget.dart';
+import 'package:lesson_13/l13-loginUI/bagzz/widgets/bottom_sheet_favorite.dart';
 import 'package:lesson_13/l13-loginUI/bagzz/widgets/bottom_sheet_widget.dart';
 
 import 'home_screen.dart';
@@ -22,8 +22,8 @@ class _BagzzState extends State<Bagzz> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    const ProfileScreen(),
-    Container(),
+    const HomeScreen(),
+    const SearchScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -43,7 +43,25 @@ class _BagzzState extends State<Bagzz> {
       isScrollControlled: false,
       context: context,
       builder: (BuildContext context) {
-        return BottomSheetWidget(counterr: counter);
+        return const BottomSheetWidget();
+      },
+    ).whenComplete(() {
+      setState(() {
+        isBottomSheetVisible = false;
+      });
+    });
+  }
+
+  void showBottomSheetFavorite() {
+    setState(() {
+      isBottomSheetVisible = true;
+    });
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      isScrollControlled: false,
+      context: context,
+      builder: (BuildContext context) {
+        return const BottomSheetFavorite();
       },
     ).whenComplete(() {
       setState(() {
@@ -92,7 +110,9 @@ class _BagzzState extends State<Bagzz> {
           ],
           currentIndex: _selectedIndex,
           onTap: (newIndex) {
-            if (newIndex == 3) {
+            if (newIndex == 2) {
+              showBottomSheetFavorite();
+            } else if (newIndex == 3) {
               showBottomSheet();
             } else {
               _onItemTapped(newIndex);

@@ -1,9 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class BagsInfo {
   String imageName;
   String name;
   String bagsTayp;
+  int count;
+  int cost;
   BagsInfo({
+    required this.cost,
+    required this.count,
     required this.imageName,
     required this.name,
     required this.bagsTayp,
@@ -11,13 +14,32 @@ class BagsInfo {
 }
 
 List<BagsInfo> bagsInfo = [
-  BagsInfo(imageName: 'assets/redBag.png', name: 'Artsy', bagsTayp: 'ShOP NOW'),
   BagsInfo(
-      imageName: 'assets/whiteBag.png', name: 'Berkely', bagsTayp: 'SHOP NOW'),
+    cost: 200,
+      count: 0,
+      imageName: 'assets/redBag.png',
+      name: 'Artsy',
+      bagsTayp: 'ShOP NOW'),
   BagsInfo(
+    cost: 300,
+      count: 0,
+      imageName: 'assets/whiteBag.png',
+      name: 'Berkely',
+      bagsTayp: 'SHOP NOW'),
+  BagsInfo(
+    cost: 500,
+      count: 0,
       imageName: 'assets/blackBag.png',
       name: 'Capucinus',
       bagsTayp: 'SHOP NOW'),
   BagsInfo(
-      imageName: 'assets/greenBag.png', name: 'Monogram', bagsTayp: 'SHOP NOW'),
+    cost: 250,
+      count: 0,
+      imageName: 'assets/greenBag.png',
+      name: 'Monogram',
+      bagsTayp: 'SHOP NOW'),
 ];
+
+
+
+
