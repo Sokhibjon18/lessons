@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:lesson_13/l13-loginUI/bagzz/bagzz.dart';
+import 'package:lesson_13/i15-BookingHotel/I15_hidden_drawer.dart';
+
 import 'package:lesson_13/l13-loginUI/welcome_page.dart';
 
 void main() {
@@ -18,16 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          backgroundColor: Colors.black,
-        ),
-        body: const SafeArea(
-          child: Bagzz(),
-        ),
-      ),
+      home: const I15HiddenDrawerMenu(),
     );
   }
 }

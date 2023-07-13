@@ -1,27 +1,46 @@
 import 'dart:developer';
 
+import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lesson_13/l13-loginUI/core/value_validators.dart';
 import 'package:lesson_13/l13-loginUI/data/auth_users_info.dart';
 import 'package:lesson_13/l13-loginUI/forgot_password_page.dart';
+import 'package:lesson_13/l13-loginUI/register_page.dart';
+import 'package:lesson_13/l13-loginUI/welcome_page.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_social_media_buttons.dart';
 import 'package:lesson_13/l13-loginUI/widgets/auth_textfields.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+
+    TextEditingController passwordController = TextEditingController();
+
+    final AuthenticationRepository _authenticationRepository =
+        AuthenticationRepository();
+
     String passwordValue = '';
     String emailAddressValue = '';
+
+    void _userLoggedIn() {
+      final bool _isUserLoggedIn = _authenticationRepository
+          .isEmailAndPasswordExists(emailAddressValue, passwordValue);
+      if (_isUserLoggedIn) {
+        Flushbar(
+          message: 'Logged in successfully',
+          duration: const Duration(seconds: 3),
+        ).show(context);
+      } else {
+        FlushbarHelper.createError(message: 'Invalid email or password')
+            .show(context);
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFFFFFFF),
@@ -33,7 +52,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const WelcomePage(),
+                  ),
+                );
               },
               child: Container(
                 height: 41,
@@ -96,10 +120,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 24),
             GestureDetector(
-              onTap: () {
-                isEmailAndPasswordExists(emailAddressValue, passwordValue,
-                    emailController, passwordController, context);
-              },
+              onTap: () => _userLoggedIn(),
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -160,7 +181,15 @@ class _LoginPageState extends State<LoginPage> {
                     TextSpan(
                       text: 'Register Now',
                       style: const TextStyle(color: Color(0xFF35C2C1)),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const RegisterPage(),
+                            ),
+                          );
+                        },
                     ),
                   ],
                 ),
