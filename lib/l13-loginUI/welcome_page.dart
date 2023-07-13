@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lesson_13/l13-loginUI/login_page.dart';
+import 'package:lesson_13/l13-loginUI/register_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -8,7 +10,7 @@ class WelcomePage extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/bg.jpg'),
+          image: AssetImage('assets/images/bg.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -17,7 +19,7 @@ class WelcomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset('assets/logo.png'),
+            Image.asset('assets/images/logo.png'),
             const SizedBox(height: 12),
             RichText(
               text: const TextSpan(
@@ -43,6 +45,14 @@ class WelcomePage extends StatelessWidget {
             ),
             const SizedBox(height: 42),
             GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LoginPage(),
+                  ),
+                );
+              },
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -53,12 +63,23 @@ class WelcomePage extends StatelessWidget {
                 child: const Text(
                   'Login',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
             const SizedBox(height: 16),
             GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const RegisterPage(),
+                  ),
+                );
+              },
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -69,7 +90,10 @@ class WelcomePage extends StatelessWidget {
                 child: const Text(
                   'Register',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -85,7 +109,7 @@ class WelcomePage extends StatelessWidget {
                 decorationColor: Color(0xff35c2c1),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),
