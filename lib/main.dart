@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lesson_13/l13-loginUI/bagzz/bagzz.dart';
 import 'package:lesson_13/l13-loginUI/welcome_page.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         body: const SafeArea(
-          child: WelcomePage(),
+          child: Bagzz(),
         ),
       ),
     );
