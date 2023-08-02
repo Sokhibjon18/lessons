@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lesson_13/animations/animated_align.dart';
+import 'package:lesson_13/animations/animated_container.dart';
+import 'package:lesson_13/animations/animated_opacity.dart';
+import 'package:lesson_13/animations/animated_padding.dart';
+import 'package:lesson_13/animations/animation_page.dart';
+import 'package:lesson_13/animations/explicitly_animated_widgetlar/animated_builder.dart';
 import 'package:lesson_13/i15-BookingHotel/I15_hidden_drawer.dart';
 
 import 'package:lesson_13/l13-loginUI/welcome_page.dart';
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const I15HiddenDrawerMenu(),
+      home: ScaleTransitionExample(),
     );
   }
 }
