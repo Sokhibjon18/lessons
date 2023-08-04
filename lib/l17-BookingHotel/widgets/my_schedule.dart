@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lesson_13/i15-BookingHotel/data/popular_destinations_info.dart';
+import 'package:lesson_13/l17-BookingHotel/data/hotels_repository.dart';
 
-class PopularDestinations extends StatelessWidget {
-  const PopularDestinations({super.key});
+class MySchedule extends StatelessWidget {
+  const MySchedule({Key? key, required this.today}) : super(key: key);
+  final DateTime today;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Popular Destination',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              'See all',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF4C4DDC),
-              ),
-            )
-          ],
+        const Text(
+          'My Schedule',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         const SizedBox(height: 12),
         SizedBox(
@@ -35,9 +24,15 @@ class PopularDestinations extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            itemCount: 3,
+            itemCount: HotelsRepository.instance.bookedHotelsList.length,
             itemBuilder: (BuildContext context, int index) {
-              final populatDestination = popularHotels[index];
+              final bookedHotel =
+                  HotelsRepository.instance.bookedHotelsList[index];
+              final startDate = bookedHotel.bookedDate!.start;
+              final endDate = bookedHotel.bookedDate!.end;
+              if (today.isBefore(startDate) || today.isAfter(endDate)) {
+                return Container();
+              } else {}
               return Padding(
                 padding: const EdgeInsets.only(bottom: 16, left: 2, right: 2),
                 child: Container(
@@ -68,7 +63,7 @@ class PopularDestinations extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: Image(
-                              image: AssetImage(populatDestination.picture),
+                              image: AssetImage(bookedHotel.hotelPhoto),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -84,7 +79,7 @@ class PopularDestinations extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    populatDestination.name,
+                                    bookedHotel.hotelName,
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700,
@@ -92,7 +87,7 @@ class PopularDestinations extends StatelessWidget {
                                   ),
                                   RichText(
                                     text: TextSpan(
-                                      text: populatDestination.price,
+                                      text: bookedHotel.hotelPrice,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w700,
@@ -113,31 +108,33 @@ class PopularDestinations extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 8),
-                              Text(
-                                populatDestination.location,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color(0xFF878787),
-                                ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                      'assets/vectors/location_border.svg'),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    bookedHotel.hotelLocation,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFF878787),
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 8),
                               Row(
                                 children: [
-                                  Row(
-                                    children: List.generate(
-                                      5,
-                                      (index) => SvgPicture.asset(
-                                        'assets/vectors/star.svg',
-                                      ),
-                                    ),
-                                  ),
+                                  SvgPicture.asset(
+                                      'assets/vectors/calendar.svg'),
                                   const SizedBox(width: 8),
                                   Text(
-                                    populatDestination.stars,
+                                    '${bookedHotel.bookedDate!.start.year}-0${bookedHotel.bookedDate!.start.month}-${bookedHotel.bookedDate!.start.day}',
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
+                                      color: Color(0xFF878787),
                                     ),
                                   ),
                                 ],

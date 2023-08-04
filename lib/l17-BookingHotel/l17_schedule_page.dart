@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_13/i15-BookingHotel/widgets/my_schedule.dart';
+import 'package:lesson_13/l17-BookingHotel/widgets/my_schedule.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class I15SchedulePage extends StatefulWidget {
-  const I15SchedulePage({super.key});
+class L17SchedulePage extends StatefulWidget {
+  const L17SchedulePage({super.key});
 
   @override
-  State<I15SchedulePage> createState() => _I15SchedulePageState();
+  State<L17SchedulePage> createState() => _L17SchedulePageState();
 }
 
-class _I15SchedulePageState extends State<I15SchedulePage> {
+class _L17SchedulePageState extends State<L17SchedulePage> {
   DateTime today = DateTime.now();
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
@@ -50,7 +50,7 @@ class _I15SchedulePageState extends State<I15SchedulePage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                const MySchedule(),
+                MySchedule(today: today),
               ],
             ),
           ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lesson_13/i15-BookingHotel/widgets/nearby_hotels.dart';
-import 'package:lesson_13/i15-BookingHotel/widgets/home_market_cofee_buttons.dart';
-import 'package:lesson_13/i15-BookingHotel/widgets/popular_destinations.dart';
+import 'package:lesson_13/l17-BookingHotel/widgets/nearby_hotels.dart';
+import 'package:lesson_13/l17-BookingHotel/widgets/home_market_cofee_buttons.dart';
+import 'package:lesson_13/l17-BookingHotel/widgets/popular_destinations.dart';
 
-class I15HomePage extends StatelessWidget {
-  const I15HomePage({super.key});
+class L17HomePage extends StatelessWidget {
+  const L17HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

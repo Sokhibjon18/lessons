@@ -29,16 +29,17 @@ class _HomeMarketCofeeButtonsState extends State<HomeMarketCofeeButtons> {
                     : const Color(0xFFF5F5F5),
               ),
               child: Center(
-                  child: Text(
-                'Hotel',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: _isSelected[0] == true
-                      ? const Color(0xFFFFFFFF)
-                      : const Color(0xFF878787),
+                child: Text(
+                  'Hotel',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: _isSelected[0] == true
+                        ? const Color(0xFFFFFFFF)
+                        : const Color(0xFF878787),
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
         ),

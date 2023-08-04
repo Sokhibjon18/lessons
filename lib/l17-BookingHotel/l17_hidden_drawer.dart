@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
-import 'package:lesson_13/i15-BookingHotel/I15Schedule_page.dart';
-import 'package:lesson_13/i15-BookingHotel/I15_setting_page.dart';
-import 'package:lesson_13/i15-BookingHotel/I15_home_page.dart';
+import 'package:lesson_13/l17-BookingHotel/l17_schedule_page.dart';
+import 'package:lesson_13/l17-BookingHotel/l17_setting_page.dart';
+import 'package:lesson_13/l17-BookingHotel/l17_home_page.dart';
 
-class I15HiddenDrawerMenu extends StatefulWidget {
-  const I15HiddenDrawerMenu({super.key});
+class L17HiddenDrawerMenu extends StatefulWidget {
+  const L17HiddenDrawerMenu({super.key});
 
   @override
-  State<I15HiddenDrawerMenu> createState() => _I15HiddenDrawerMenuState();
+  State<L17HiddenDrawerMenu> createState() => _L17HiddenDrawerMenuState();
 }
 
-class _I15HiddenDrawerMenuState extends State<I15HiddenDrawerMenu> {
+class _L17HiddenDrawerMenuState extends State<L17HiddenDrawerMenu> {
   List<ScreenHiddenDrawer> _pages = [];
 
   @override
@@ -26,7 +26,7 @@ class _I15HiddenDrawerMenuState extends State<I15HiddenDrawerMenu> {
           selectedStyle: const TextStyle(color: Colors.white),
           colorLineSelected: Colors.white,
         ),
-        const I15HomePage(),
+        const L17HomePage(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
@@ -35,7 +35,7 @@ class _I15HiddenDrawerMenuState extends State<I15HiddenDrawerMenu> {
           selectedStyle: const TextStyle(color: Colors.white),
           colorLineSelected: Colors.white,
         ),
-        const I15SchedulePage(),
+        const L17SchedulePage(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
@@ -44,7 +44,7 @@ class _I15HiddenDrawerMenuState extends State<I15HiddenDrawerMenu> {
           selectedStyle: const TextStyle(color: Colors.white),
           colorLineSelected: Colors.white,
         ),
-        const I15SettingPage(),
+        const L17SettingsPage(),
       ),
     ];
   }
