@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class I20HomePage extends StatefulWidget {
-  const I20HomePage({super.key});
+  const I20HomePage({required this.changeTheme, super.key});
+
+  final Function changeTheme;
 
   @override
   State<I20HomePage> createState() => _I20HomePageState();
 }
 
-bool isSwitch = false;
-
 class _I20HomePageState extends State<I20HomePage> {
   bool? isChecked = false;
+  bool switcherValue = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,17 +32,15 @@ class _I20HomePageState extends State<I20HomePage> {
                 ),
                 Expanded(child: Container()),
                 Text(
-                  isSwitch ? 'dark' : 'light',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w400),
+                  switcherValue ? 'dark' : 'light',
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(width: 8),
                 Switch(
-                  value: isSwitch,
+                  value: switcherValue,
                   onChanged: (value) {
-                    setState(() {
-                      isSwitch = value;
-                    });
+                    switcherValue = value;
+                    widget.changeTheme();
                   },
                 ),
               ],

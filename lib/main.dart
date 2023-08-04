@@ -15,21 +15,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isSwitch = false;
+
+  void changeTheme() {
+    isSwitch = !isSwitch;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //   useMaterial3: true,
-      // ),
-
-      theme: isSwitch
-          ? AppThemes.appThemeData[AppTheme.darkTheme]
-          : AppThemes.appThemeData[AppTheme.lightTheme],
-
-      // theme:
-      home: const I20HomePage(),
+      themeMode: isSwitch ? ThemeMode.dark : ThemeMode.light,
+      theme: AppThemes.appThemeData[AppTheme.lightTheme],
+      darkTheme: AppThemes.appThemeData[AppTheme.darkTheme],
+      home: I20HomePage(changeTheme: changeTheme),
     );
   }
 }
