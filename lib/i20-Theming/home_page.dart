@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 
-class I20HomePage extends StatefulWidget {
-  const I20HomePage({required this.changeTheme, super.key});
+class L20HomePage extends StatefulWidget {
+  const L20HomePage({required this.changeTheme, super.key});
 
   final Function changeTheme;
 
   @override
-  State<I20HomePage> createState() => _I20HomePageState();
+  State<L20HomePage> createState() => _L20HomePageState();
 }
 
-class _I20HomePageState extends State<I20HomePage> {
+class _L20HomePageState extends State<L20HomePage> {
   bool? isChecked = false;
   bool switcherValue = false;
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Theming'),
-      ),
-      body: Padding(
+    return SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +44,8 @@ class _I20HomePageState extends State<I20HomePage> {
                 Expanded(child: Container()),
                 Text(
                   switcherValue ? 'dark' : 'light',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(width: 8),
                 Switch(
@@ -62,9 +74,23 @@ class _I20HomePageState extends State<I20HomePage> {
             TextFormField(),
             const SizedBox(height: 12),
             Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('Text button'),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 150,
+                    width: 250,
+                    child: Card(
+                      child: Center(
+                        child: Text('This is a Card'),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Text button'),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 12),
@@ -75,13 +101,19 @@ class _I20HomePageState extends State<I20HomePage> {
                 onPressed: () {},
                 child: const Text('Elevated button'),
               ),
-            )
+            ),
+            const SizedBox(height: 24),
+            Center(
+              child: SizedBox(
+                height: 48,
+                child: ElevatedButton(
+                  onPressed: () => _selectTime(context),
+                  child: const Text('Select time'),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }

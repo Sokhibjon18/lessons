@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_image/flutter_svg_image.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lesson_13/l15-shopUI/search_screen.dart';
 import 'package:lesson_13/l15-shopUI/widgets/app_bar_widget.dart';
 import 'package:lesson_13/l15-shopUI/widgets/bottom_sheet_favorite.dart';

@@ -10,6 +10,9 @@ class AppThemes {
       primaryColor: Colors.black,
       brightness: Brightness.dark,
       dividerColor: Colors.black54,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF263238),
+      ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -60,10 +63,26 @@ class AppThemes {
           ),
         ),
       ),
+      cardTheme: CardTheme(
+        elevation: 8.0,
+        shadowColor: const Color(0xFF333333),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color(0xFF121212),
+        hourMinuteTextColor: Color(0xFFFFFFFF),
+        dayPeriodTextColor: Color(0xFFAAAAAA),
+        dialHandColor: Color(0xFF2962FF),
+        dialBackgroundColor: Color(0xFF1E1E1E),
+        entryModeIconColor: Color(0xFF64B5F6),
+      ),
       textTheme: const TextTheme(titleMedium: TextStyle(color: Colors.white)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Colors.grey,
-        unselectedItemColor: Colors.white,
+        backgroundColor: Color(0xFF263238),
+        selectedItemColor: Color(0xFF64B5F6),
+        unselectedItemColor: Color(0xFFB0BEC5),
       ),
     ),
     //////////////////////////////////!
@@ -73,6 +92,9 @@ class AppThemes {
       primaryColor: Colors.white,
       brightness: Brightness.light,
       dividerColor: const Color(0xFF757575),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFFECEFF1),
+      ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
@@ -126,10 +148,24 @@ class AppThemes {
           ),
         ),
       ),
+      cardTheme: CardTheme(
+        elevation: 8.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+      ),
+      timePickerTheme: const TimePickerThemeData(
+        backgroundColor: Color(0xFFF0F2F5),
+        hourMinuteTextColor: Color(0xFF333333),
+        dayPeriodTextColor: Color(0xFF757575),
+        dialHandColor: Color(0xFF2962FF),
+        dialBackgroundColor: Color(0xFFFFFFFF),
+        entryModeIconColor: Color(0xFF64B5F6),
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Colors.grey,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.white,
+        backgroundColor: Color(0xFFECEFF1),
+        selectedItemColor: Color(0xFF1976D2),
+        unselectedItemColor: Color(0xFF9E9E9E),
       ),
     ),
   };
