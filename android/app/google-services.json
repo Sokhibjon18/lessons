@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "95255877348",
+    "firebase_url": "https://lessons-945e0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "lessons-945e0",
+    "storage_bucket": "lessons-945e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95255877348:android:3d1af6481de9680d763ef1",
+        "android_client_info": {
+          "package_name": "uz.sokhib.lesson_13"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95255877348-oe0k7d5gtpgeb678pj4ol5mk8la1nafp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiP6RE6DKS4VzDTiKpmG-wpFtof5W8yq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95255877348-oe0k7d5gtpgeb678pj4ol5mk8la1nafp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "95255877348-528bovoannt8dbdjqflbtuqhiuh0qhcq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "uz.sokhib.lesson13"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,10 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lesson_13/i20-Theming/home_page.dart';
-import 'package:lesson_13/i20-Theming/l20_bottom_nav_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lesson_13/L19-Theming/pages/home_page.dart';
+import 'package:lesson_13/L19-Theming/pages/l19_bottom_nav_bar.dart';
+import 'package:lesson_13/firebase_auth/bloc/auth_bloc.dart';
+import 'package:lesson_13/firebase_auth/pages/firebase_auth_sign_in_page.dart';
+import 'package:lesson_13/firebase_firestore/pages/firebase_firestore_page.dart';
+import 'package:lesson_13/todo_app/application/todo/todo_bloc.dart';
+import 'package:lesson_13/todo_app/application/todo_overview/todo_overview_bloc.dart';
+import 'package:lesson_13/todo_app/presentation/todo_overview/todo_overview_page.dart';
 
-import 'i20-Theming/model/app_theme.dart';
+import 'L19-Theming/model/app_theme.dart';
+import 'firebase_firestore/bloc/contact_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -25,12 +36,28 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: isSwitch ? ThemeMode.dark : ThemeMode.light,
-      theme: AppThemes.appThemeData[AppTheme.lightTheme],
-      darkTheme: AppThemes.appThemeData[AppTheme.darkTheme],
-      home: L20BottonNavBar(changeTheme: changeTheme),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ContactBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TodoBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TodoOverviewBloc(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: isSwitch ? ThemeMode.dark : ThemeMode.light,
+        theme: AppThemes.appThemeData[AppTheme.lightTheme],
+        darkTheme: AppThemes.appThemeData[AppTheme.darkTheme],
+        home: const TodoOverviewPage(),
+      ),
     );
   }
 }
