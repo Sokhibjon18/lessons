@@ -5,6 +5,7 @@ import 'package:lesson_13/L19-Theming/pages/home_page.dart';
 import 'package:lesson_13/L19-Theming/pages/l19_bottom_nav_bar.dart';
 import 'package:lesson_13/firebase_auth/bloc/auth_bloc.dart';
 import 'package:lesson_13/firebase_auth/pages/firebase_auth_sign_in_page.dart';
+import 'package:lesson_13/firebase_firestore/pages/contact_adding_and_editing_page.dart';
 import 'package:lesson_13/firebase_firestore/pages/firebase_firestore_page.dart';
 import 'package:lesson_13/todo_app/application/todo/todo_bloc.dart';
 import 'package:lesson_13/todo_app/application/todo_overview/todo_overview_bloc.dart';
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: isSwitch ? ThemeMode.dark : ThemeMode.light,
         theme: AppThemes.appThemeData[AppTheme.lightTheme],
         darkTheme: AppThemes.appThemeData[AppTheme.darkTheme],
-        home: const TodoOverviewPage(),
+        home: const FirebaseFirestorePage(),
       ),
     );
   }

@@ -11,7 +11,7 @@ part 'contact_bloc.freezed.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   final ContactsRepository contactsRepository = ContactsRepository();
-  List<Map<String, dynamic>> contactList = [];
+  List<Contact> contactList = [];
   Contact contact = Contact.empty();
 
   ContactBloc() : super(const _Initial()) {

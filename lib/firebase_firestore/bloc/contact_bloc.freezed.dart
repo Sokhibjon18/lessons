@@ -915,8 +915,7 @@ mixin _$ContactState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -925,7 +924,7 @@ mixin _$ContactState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -934,7 +933,7 @@ mixin _$ContactState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,
@@ -1027,8 +1026,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -1040,7 +1038,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -1052,7 +1050,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,
@@ -1115,7 +1113,7 @@ abstract class _$$_ContactsTakenCopyWith<$Res> {
           _$_ContactsTaken value, $Res Function(_$_ContactsTaken) then) =
       __$$_ContactsTakenCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Map<String, dynamic>> contactsList});
+  $Res call({List<Contact> contactsList});
 }
 
 /// @nodoc
@@ -1135,7 +1133,7 @@ class __$$_ContactsTakenCopyWithImpl<$Res>
       null == contactsList
           ? _value._contactsList
           : contactsList // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<Contact>,
     ));
   }
 }
@@ -1143,12 +1141,12 @@ class __$$_ContactsTakenCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ContactsTaken implements _ContactsTaken {
-  const _$_ContactsTaken(final List<Map<String, dynamic>> contactsList)
+  const _$_ContactsTaken(final List<Contact> contactsList)
       : _contactsList = contactsList;
 
-  final List<Map<String, dynamic>> _contactsList;
+  final List<Contact> _contactsList;
   @override
-  List<Map<String, dynamic>> get contactsList {
+  List<Contact> get contactsList {
     if (_contactsList is EqualUnmodifiableListView) return _contactsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_contactsList);
@@ -1182,8 +1180,7 @@ class _$_ContactsTaken implements _ContactsTaken {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -1195,7 +1192,7 @@ class _$_ContactsTaken implements _ContactsTaken {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -1207,7 +1204,7 @@ class _$_ContactsTaken implements _ContactsTaken {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,
@@ -1261,10 +1258,10 @@ class _$_ContactsTaken implements _ContactsTaken {
 }
 
 abstract class _ContactsTaken implements ContactState {
-  const factory _ContactsTaken(final List<Map<String, dynamic>> contactsList) =
+  const factory _ContactsTaken(final List<Contact> contactsList) =
       _$_ContactsTaken;
 
-  List<Map<String, dynamic>> get contactsList;
+  List<Contact> get contactsList;
   @JsonKey(ignore: true)
   _$$_ContactsTakenCopyWith<_$_ContactsTaken> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1308,8 +1305,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -1321,7 +1317,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -1333,7 +1329,7 @@ class _$_Success implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,
@@ -1428,8 +1424,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -1441,7 +1436,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -1453,7 +1448,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,
@@ -1574,8 +1569,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Map<String, dynamic>> contactsList)
-        contactsTaken,
+    required TResult Function(List<Contact> contactsList) contactsTaken,
     required TResult Function() success,
     required TResult Function() loading,
     required TResult Function(String message) failure,
@@ -1587,7 +1581,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult? Function(List<Contact> contactsList)? contactsTaken,
     TResult? Function()? success,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
@@ -1599,7 +1593,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Map<String, dynamic>> contactsList)? contactsTaken,
+    TResult Function(List<Contact> contactsList)? contactsTaken,
     TResult Function()? success,
     TResult Function()? loading,
     TResult Function(String message)? failure,

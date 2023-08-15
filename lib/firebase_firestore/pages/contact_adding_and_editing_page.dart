@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lesson_13/firebase_firestore/bloc/contact_bloc.dart';
-import 'package:lesson_13/firebase_firestore/model/contact.dart';
 import 'package:lesson_13/firebase_firestore/pages/widgets/contacts_textfield.dart';
 
 class ContactAddingAndEditingPage extends StatefulWidget {
   const ContactAddingAndEditingPage({super.key});
 
   @override
-  State<ContactAddingAndEditingPage> createState() =>
-      _ContactAddingAndEditingPageState();
+  State<ContactAddingAndEditingPage> createState() => _ContactAddingAndEditingPageState();
 }
 
-class _ContactAddingAndEditingPageState
-    extends State<ContactAddingAndEditingPage> {
-  TextEditingController _numberEditingController = TextEditingController();
-  TextEditingController _nameEditingController = TextEditingController();
+class _ContactAddingAndEditingPageState extends State<ContactAddingAndEditingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +19,7 @@ class _ContactAddingAndEditingPageState
       ),
       body: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.only(left: 24, right: 24, top: 48, bottom: 48),
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 48, bottom: 48),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,11 +32,8 @@ class _ContactAddingAndEditingPageState
               ),
               const SizedBox(height: 6),
               ContactTextfield(
-                controller: _nameEditingController,
                 onChanged: (value) {
-                  context
-                      .read<ContactBloc>()
-                      .add(ContactEvent.changeName(value));
+                  context.read<ContactBloc>().add(ContactEvent.changeName(value));
                 },
                 hintText: 'Enter contact name',
               ),
@@ -56,11 +47,8 @@ class _ContactAddingAndEditingPageState
               ),
               const SizedBox(height: 6),
               ContactTextfield(
-                controller: _numberEditingController,
                 onChanged: (value) {
-                  context
-                      .read<ContactBloc>()
-                      .add(ContactEvent.changeNumber(value));
+                  context.read<ContactBloc>().add(ContactEvent.changeNumber(value));
                 },
                 hintText: 'Enter contact number',
               ),
@@ -70,9 +58,7 @@ class _ContactAddingAndEditingPageState
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<ContactBloc>()
-                        .add(const ContactEvent.create());
+                    context.read<ContactBloc>().add(const ContactEvent.create());
                   },
                   child: const Text('Add contact'),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lesson_13/firebase_firestore/model/contact.dart';
 
 import '../../bloc/contact_bloc.dart';
 
@@ -10,12 +11,13 @@ class ContactsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ContactBloc, ContactState>(
       builder: (context, state) {
+        var contacts = <Contact>[];
+        state.mapOrNull(contactsTaken: (newContacts) => contacts = newContacts.contactsList);
         return Expanded(
           child: ListView.separated(
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: Container(
                   height: 78,
                   width: double.infinity,
@@ -31,18 +33,18 @@ class ContactsBody extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12, right: 12),
                     child: Row(
                       children: [
-                        const Column(
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '',
-                              style: TextStyle(
+                              contacts[index].name,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text('+998991234567'),
+                            Text(contacts[index].number),
                           ],
                         ),
                         Expanded(child: Container()),
@@ -66,7 +68,7 @@ class ContactsBody extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(width: 12);
             },
-            itemCount: 4,
+            itemCount: contacts.length,
           ),
         );
       },

@@ -6,18 +6,15 @@ class ContactTextfield extends StatelessWidget {
     Key? key,
     this.onChanged,
     required this.hintText,
-    required this.controller,
   }) : super(key: key);
 
   final void Function(String)? onChanged;
   final String hintText;
-  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
-      controller: controller,
       decoration: InputDecoration(
         border: const UnderlineInputBorder(),
         focusedBorder: const UnderlineInputBorder(),

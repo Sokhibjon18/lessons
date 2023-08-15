@@ -5,17 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lesson_13/firebase_firestore/model/contact.dart';
 
 class ContactsRepository {
-  Future<List<Map<String, dynamic>>> getContacts() async {
+  Future<List<Contact>> getContacts() async {
     try {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('contacts').get();
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('contacts').get();
 
-      List<Map<String, dynamic>> contacts =
-          querySnapshot.docs.map((DocumentSnapshot doc) {
-        return doc.data() as Map<String, dynamic>;
+      return querySnapshot.docs.map((DocumentSnapshot doc) {
+        var contact = Contact.fromMap(doc.data() as Map<String, dynamic>);
+        contact.id = doc.id;
+        return contact;
       }).toList();
-      log('balsdad ${contacts.toString()}');
-      return contacts;
     } catch (e) {
       log('Error retrieving items from Firestore: $e');
       return [];
@@ -40,10 +38,7 @@ class ContactsRepository {
 
   Future<String?> update(Contact contact) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('contacts')
-          .doc(contact.id)
-          .update({
+      await FirebaseFirestore.instance.collection('contacts').doc(contact.id).update({
         'name': contact.name,
         'number': contact.number,
       });
@@ -59,10 +54,7 @@ class ContactsRepository {
 
   Future<String?> delete(Contact contact) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('contacts')
-          .doc(contact.id)
-          .delete();
+      await FirebaseFirestore.instance.collection('contacts').doc(contact.id).delete();
       return null;
     } on FirebaseException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
